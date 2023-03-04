@@ -1,0 +1,38 @@
+# Generic files to ignore
+
+# git rebase tmp files
+*.orig
+
+# org-mode generated files
+doc/*.pdf
+doc/*.tex
+doc/*.html
+doc/*.aux
+doc/*.log
+doc/*.out
+doc/*.toc
+
+# python cache
+__pycache__/
+
+.vscode/
+
+tmp/
+*.egg-info/
+
+.coverage
+
+.hypothesis/
+
+# sphinx stuff
+doc/Makefile
+doc/make.bat
+doc/build/
+doc/source/_static
+doc/source/_templates
+doc/source/modules.rst
+doc/source/wm_help_launcher.rst
+doc/source/wm_help_launcher.bin.rst
+
+.mypy_cache
+htmlcov

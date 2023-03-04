@@ -1,0 +1,106 @@
+[tool.poetry]
+name = "wm_help_launcher"
+version = "0.1.0"
+description = "WM keybindings made easy"
+authors = ["robtekky <robtekky@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+bandit = "*"
+flake8 = "*"
+ipython = "*"
+ipdb = "*"
+mypy = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-xdist = "*"
+Sphinx = "*"
+sphinx-rtd-theme = "*"
+pytest-sugar = "*"
+pytest-icdiff = "*"
+pytest-deadfixtures = "*"
+pylint = "*"
+pytest-picked = "*"
+pytest-benchmark = "*"
+pytest-html = "*"
+pytest-leaks = "*"
+autoflake = "*"
+black = "*"
+isort = "*"
+ruff = "*"
+flake8-pyproject = "*"
+wrapt = "*"
+specialist = "*"
+pyright = "*"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+profile = "black"
+combine_as_imports = true
+force_sort_within_sections = true
+line_length = 120
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+
+[tool.flake8]
+exclude = [
+        ".git",
+        "__pycache__",
+        ".mypy_cache",
+        ".pytest_cache",
+]
+per-file-ignores = [
+    '__init__.py:F401',
+]
+max-line-length = 120
+count = true
+
+[tool.ruff]
+line-length = 120
+extend-exclude = [
+               ".git",
+               "__pycache__",
+               "__init__.py",
+               ".mypy_cache",
+               ".pytest_cache",
+               ]
+
+[tool.pylint.master]
+extension-pkg-allow-list = ["blake3"]
+py-version = "3.11"
+
+[tool.pylint.format]
+indent-after-paren=4
+indent-string='    '
+max-line-length=120
+
+# [tool.pylint.typecheck]
+# generated-members = ["blake3.*"]
+
+[tool.pyright]
+include = ["src"]
+exclude = ["**/node_modules",
+           "**/__pycache__",
+           "src/experimental",
+           "src/typestubs",
+           ]
+# ignore = ["src/oldstuff"]
+defineConstant = { DEBUG = true }
+# stubPath = "src/stubs"
+venvPath = "{cache-dir}/virtualenvs/"
+venv = "wm-help-launcher-gIziWV7F-py3.11"
+# verboseOutput = true
+reportMissingImports = true
+reportMissingTypeStubs = false
+pythonVersion = "3.11"
+pythonPlatform = "Linux"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
