@@ -16,27 +16,26 @@ def test_version():
 
 
 def test_get_keybindings_dict__ok(config_file):
-    config_file.write_text("""/*d* A+S F1 This is the first keybinding */\n
+    config_file.write_text(
+        """/*d* A+S F1 This is the first keybinding */\n
     /*d* C+A k This is the second keybinding */\n
     /*d* A+C g This is the third keybinding */\n
-    /*d* 0 XF86XK_AudioMute This is the fourth keybinding */""")
+    /*d* 0 XF86XK_AudioMute This is the fourth keybinding */"""
+    )
 
     with pytest.MonkeyPatch.context() as monkeypatch:
         monkeypatch.setenv("HOME", str(config_file.parent.parent.parent))
         kb_dict = wm_helper.get_keybindings_dict()
 
     assert kb_dict == {
-        ('AS', 'F1'): 'This is the first keybinding',
-        ('AC', 'k'): 'This is the second keybinding',
-        ('AC', 'g'): 'This is the third keybinding',
-        ('0', 'XF86XK_AudioMute'): 'This is the fourth keybinding',
+        ("AS", "F1"): "This is the first keybinding",
+        ("AC", "k"): "This is the second keybinding",
+        ("AC", "g"): "This is the third keybinding",
+        ("0", "XF86XK_AudioMute"): "This is the fourth keybinding",
     }
 
 
-@pytest.mark.parametrize(
-    "modifiers",
-    ["D", "0+1", "C+0"]
-)
+@pytest.mark.parametrize("modifiers", ["D", "0+1", "C+0"])
 def test_get_keybindings_dict__invalid_modifier(config_file, modifiers):
     config_file.write_text(f"/*d* {modifiers} F1 This is the a keybinding */")
 
@@ -63,10 +62,7 @@ def test_get_keybindings_dict__duplicate_modifiers(config_file):
     assert exit_mock.value.code.startswith("Found the following line with duplicate modifiers included:")
 
 
-@pytest.mark.parametrize(
-    "modifiers",
-    ["C+A", "A+C"]
-)
+@pytest.mark.parametrize("modifiers", ["C+A", "A+C"])
 def test_get_keybindings_dict__reserved_keybinding(config_file, modifiers):
     config_file.write_text(f"/*d* {modifiers} F5 This is the a keybinding */")
 
@@ -81,10 +77,12 @@ def test_get_keybindings_dict__reserved_keybinding(config_file, modifiers):
 
 
 def test_get_keybindings_dict__duplicate_keybinding(config_file):
-    config_file.write_text("""/*d* A+S F1 This is the first keybinding */\n
+    config_file.write_text(
+        """/*d* A+S F1 This is the first keybinding */\n
     /*d* C+A k This is the second keybinding */\n
     /*d* A+C g This is the third keybinding */\n
-    /*d* A+S F1 This is the fourth keybinding */""")
+    /*d* A+S F1 This is the fourth keybinding */"""
+    )
 
     with pytest.MonkeyPatch.context() as monkeypatch:
         monkeypatch.setenv("HOME", str(config_file.parent.parent.parent))
@@ -96,11 +94,7 @@ def test_get_keybindings_dict__duplicate_keybinding(config_file):
     assert exit_mock.value.code.startswith("Found the following line with a duplicate keybinding:")
 
 
-@pytest.mark.parametrize(
-    "modifiers, expected_translation",
-    [("CA", "Control+Alt"),
-     ("MS", "Super+Shift")]
-)
+@pytest.mark.parametrize("modifiers, expected_translation", [("CA", "Control+Alt"), ("MS", "Super+Shift")])
 def test_translate_modifiers__regular_modifiers(modifiers, expected_translation):
     key = "U"
     translation = wm_helper.translate_modifiers(key, modifiers)
@@ -116,10 +110,12 @@ def test_translate_modifiers__0_modifier():
 
 
 def test_main__validation_mode(config_file, capsys):
-    config_file.write_text("""/*d* 0 XF86XK_AudioMute This is the first keybinding */\n
+    config_file.write_text(
+        """/*d* 0 XF86XK_AudioMute This is the first keybinding */\n
     /*d* C+A k This is the second keybinding */\n
     /*d* A+C g This is the third keybinding */\n
-    /*d* A+S F1 This is the fourth keybinding */""")
+    /*d* A+S F1 This is the fourth keybinding */"""
+    )
 
     with pytest.MonkeyPatch.context() as monkeypatch:
         monkeypatch.setenv("HOME", str(config_file.parent.parent.parent))
@@ -131,10 +127,12 @@ def test_main__validation_mode(config_file, capsys):
 
 
 def test_main__key_mode(config_file, capsys):
-    config_file.write_text("""/*d* A+S F1 This is the first keybinding */\n
+    config_file.write_text(
+        """/*d* A+S F1 This is the first keybinding */\n
     /*d* C+A k This is the second keybinding */\n
     /*d* 0 XF86XK_Calculator This is the third keybinding */\n
-    /*d* A+C g This is the fourth keybinding */""")
+    /*d* A+C g This is the fourth keybinding */"""
+    )
 
     with pytest.MonkeyPatch.context() as monkeypatch:
         monkeypatch.setenv("HOME", str(config_file.parent.parent.parent))
@@ -146,4 +144,4 @@ def test_main__key_mode(config_file, capsys):
         "F1+Alt+Shift This is the first keybinding\n"
         "k+Alt+Control This is the second keybinding\n"
         "g+Alt+Control This is the fourth keybinding\n"
-        )
+    )
