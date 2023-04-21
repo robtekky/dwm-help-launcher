@@ -44,7 +44,7 @@ marker = re.compile(r"^\s*/\*d\*\s+(([MCAS](\+([MCAS]))*)|0)\s+([\w\-\+<>,\.]+)\
 invalids = re.compile(r"^\s*/\*d\*\s+([^\s]+)\s+")
 fn_keys = re.compile(r"^[f, F]\d{1,2}$")
 MOD_SEP = "+"
-modifiers = set("MCAS0+")
+MODIFIERS = set("MCAS0+")
 
 
 def _process_line(match: re.Match, line: str, keybindings_dict: dict[tuple[str, str], str]) -> None:
@@ -84,7 +84,7 @@ def get_keybindings_dict() -> dict[tuple[str, str], str]:
         for line in file:
             if _match := invalids.match(line):
                 group1 = set(_match[1])
-                if group1.difference(modifiers) or (("0" in group1) and (len(group1) > 1)):
+                if group1.difference(MODIFIERS) or (("0" in group1) and (len(group1) > 1)):
                     sys.exit(f"Found the following line containing invalid modifier/s:\n{line}")
 
             if _match := marker.match(line):
@@ -119,18 +119,7 @@ def translate_modifiers(key: str, _modifiers: str) -> str:
     return f"{key}+{tr_mods}"
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="DWM help system.")
-    parser.add_argument(
-        "-m",
-        "--mode",
-        choices=["validation", "key"],
-        default="validation",
-        help="what to do (default: validation)",
-    )
-    args = parser.parse_args()
-    mode = args.mode
-
+def main(mode: str) -> None:
     kb_dict = get_keybindings_dict()
 
     if mode == "validation":
@@ -146,3 +135,17 @@ if __name__ == "__main__":
             # Do not show keybindings containing special keys if so configured
             if not _key.startswith(SPECIAL_PREFIX) or SHOW_SPECIAL_KEYS:
                 print(f"{translate_modifiers(_key, _modifiers)} {description}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="DWM help system.")
+    parser.add_argument(
+        "-m",
+        "--mode",
+        choices=["validation", "key"],
+        default="validation",
+        help="what to do (default: validation)",
+    )
+    args = parser.parse_args()
+
+    main(args.mode)

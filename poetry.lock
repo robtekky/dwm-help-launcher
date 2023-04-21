@@ -1146,14 +1146,14 @@ testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pyright"
-version = "1.1.303"
+version = "1.1.304"
 description = "Command line wrapper for pyright"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.303-py3-none-any.whl", hash = "sha256:8fe3d122d7e965e2df2cef64e1ceb98cff8200f458e7892d92a4c21ee85689c7"},
-    {file = "pyright-1.1.303.tar.gz", hash = "sha256:7daa516424555681e8974b21a95c108c5def791bf5381522b1410026d4da62c1"},
+    {file = "pyright-1.1.304-py3-none-any.whl", hash = "sha256:70021bbae07fc28ed16e435f5efa65cd71e06a1888d9ca998798c283d4b3d010"},
+    {file = "pyright-1.1.304.tar.gz", hash = "sha256:87adec38081904c939e3657ab23d5fc40b7ccc22709be0af1859fc785ae4ea61"},
 ]
 
 [package.dependencies]
@@ -1477,14 +1477,14 @@ files = [
 
 [[package]]
 name = "setuptools"
-version = "67.6.1"
+version = "67.7.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "setuptools-67.6.1-py3-none-any.whl", hash = "sha256:e728ca814a823bf7bf60162daf9db95b93d532948c4c0bea762ce62f60189078"},
-    {file = "setuptools-67.6.1.tar.gz", hash = "sha256:257de92a9d50a60b8e22abfcbb771571fde0dbf3ec234463212027a4eeecbe9a"},
+    {file = "setuptools-67.7.0-py3-none-any.whl", hash = "sha256:888be97fde8cc3afd60f7784e678fa29ee13c4e5362daa7104a93bba33646c50"},
+    {file = "setuptools-67.7.0.tar.gz", hash = "sha256:b7e53a01c6c654d26d2999ee033d8c6125e5fa55f03b7b193f937ae7ac999f22"},
 ]
 
 [package.extras]
@@ -1530,14 +1530,14 @@ files = [
 
 [[package]]
 name = "specialist"
-version = "0.4.2"
+version = "0.5.0"
 description = "Visualize CPython 3.11's specializing, adaptive interpreter."
 category = "dev"
 optional = false
 python-versions = ">=3.11"
 files = [
-    {file = "specialist-0.4.2-py3-none-any.whl", hash = "sha256:e3307544bfc8cb11571029a920b1213253d069b1c354a3bc38a1dbab87ccc26e"},
-    {file = "specialist-0.4.2.tar.gz", hash = "sha256:8cfca206f972dc8d98163b6ab92a757c58652128954088a1693e1ac9ec896b94"},
+    {file = "specialist-0.5.0-py3-none-any.whl", hash = "sha256:dcf5f161d1baf2d2ae9fdb9a250d62d7dc5d2b391803bc87a2bd5dc14a40f5b5"},
+    {file = "specialist-0.5.0.tar.gz", hash = "sha256:9b69870703f09412df6c4c154bb8d0b7681b6d0e8d529c142a898ef7aac94145"},
 ]
 
 [[package]]
