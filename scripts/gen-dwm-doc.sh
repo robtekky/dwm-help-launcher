@@ -40,7 +40,7 @@
 path='/tmp'
 config_file=~/git/dwm/config.h
 # Remove any previous tmp file
-rm $path/dwm-keybindings-*.html 2>/dev/null
+[ "$WM_HELP_LAUNCHER_REMOVE_TMP_INLINE" ] || rm $path/dwm-keybindings-*.html 2>/dev/null
 tmp_file=$(mktemp --suffix=.org ${path}/dwm-keybindings-XXXX)
 
 marker='^\s*/\*d\*\s+'  # Used to identify comments including keybindings info in config.h
@@ -65,7 +65,7 @@ if [ "$1" = "org" ]; then
 
         xdg-open "$tmp_html_file" 2>/dev/null
 
-        rm "$tmp_html_file"
+        [ "$WM_HELP_LAUNCHER_REMOVE_TMP_INLINE" ] && rm "$tmp_html_file"
     else
         emacs -nw --file="$tmp_file" --eval "${elisp_common_pre}${elisp_common_post})"
 
