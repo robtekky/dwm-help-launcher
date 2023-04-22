@@ -39,6 +39,8 @@
 
 path='/tmp'
 config_file=~/git/dwm/config.h
+# Remove any previous tmp file
+rm $path/dwm-keybindings-*.html 2>/dev/null
 tmp_file=$(mktemp --suffix=.org ${path}/dwm-keybindings-XXXX)
 
 marker='^\s*/\*d\*\s+'  # Used to identify comments including keybindings info in config.h

@@ -120,6 +120,15 @@ def translate_modifiers(key: str, _modifiers: str) -> str:
 
 
 def main(mode: str) -> None:
+    """Main function.
+
+    Args:
+        mode (str): Whether to use validation mode or key mode
+
+    Returns:
+        None
+    """
+
     kb_dict = get_keybindings_dict()
 
     if mode == "validation":
